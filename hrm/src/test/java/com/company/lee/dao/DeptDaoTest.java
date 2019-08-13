@@ -19,4 +19,11 @@ public class DeptDaoTest {
             System.err.println(dept);
         }
     }
+
+    @Test
+    public void findByName() {
+        for (Dept dept:deptDao.findByName("a")){
+            System.err.println("!!!!!!"+dept);
+        }
+    }
 }

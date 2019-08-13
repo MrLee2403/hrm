@@ -23,7 +23,10 @@
     <select id="findAll" resultType="com.company.lee.dao.pojo.Dept">
       select <include refid="Base_Column_List"/> from t_dept
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="findByName" resultType="com.company.lee.dao.pojo.Dept">
+    select <include refid="Base_Column_List"/> from t_dept where dname like concat('%',#{dname},'%')
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_dept
     where dno = #{dno,jdbcType=INTEGER}
   </delete>
