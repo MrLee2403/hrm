@@ -38,7 +38,7 @@ public class DeptServiceImplTest {
 
     @Test
     public void findByPage() {
-        List<Dept> depts = deptService.findByPage(2,2);
+        List<Dept> depts = deptService.findByPage(1,2);
         for (Dept dept:depts){
             System.err.println(dept);
         }

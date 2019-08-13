@@ -31,7 +31,7 @@ public class DeptAction {
         return new ResponseResult<Dept>(code, msg);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @RequestMapping(value = "deptupdate", method = RequestMethod.POST)
     public @ResponseBody
     ResponseResult<Dept> update(Dept dept) {
         String msg = deptService.update(dept);

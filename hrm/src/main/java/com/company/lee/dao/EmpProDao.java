@@ -14,4 +14,5 @@ public interface EmpProDao {
     int updateByPrimaryKeySelective(EmpPro record);
 
     int updateByPrimaryKey(EmpPro record);
+
 }

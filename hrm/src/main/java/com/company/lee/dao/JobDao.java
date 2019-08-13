@@ -1,6 +1,9 @@
 package com.company.lee.dao;
 
 import com.company.lee.dao.pojo.Job;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface JobDao {
     int deleteByPrimaryKey(Integer jno);
@@ -14,4 +17,8 @@ public interface JobDao {
     int updateByPrimaryKeySelective(Job record);
 
     int updateByPrimaryKey(Job record);
+
+    List<Job> findAll();
+
+    List<Job> findByName(@Param("jname") String jname);
 }
