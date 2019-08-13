@@ -1,7 +1,5 @@
 package com.company.lee.dao.pojo;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class Emp {
@@ -20,10 +18,29 @@ public class Emp {
     private Integer dno;
 
     private Integer jno;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date hireday;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date jobstartday;
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "eno=" + eno +
+                ", ename='" + ename + '\'' +
+                ", esex='" + esex + '\'' +
+                ", ebirthday=" + ebirthday +
+                ", eid='" + eid + '\'' +
+                ", eedu='" + eedu + '\'' +
+                ", dno=" + dno +
+                ", jno=" + jno +
+                ", hireday=" + hireday +
+                ", jobstartday=" + jobstartday +
+                ", estate='" + estate + '\'' +
+                ", etype='" + etype + '\'' +
+                ", efrom='" + efrom + '\'' +
+                '}';
+    }
 
     private String estate;
 

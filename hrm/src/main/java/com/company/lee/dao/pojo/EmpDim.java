@@ -1,12 +1,20 @@
 package com.company.lee.dao.pojo;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class EmpDim {
     private Integer eno;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    @Override
+    public String toString() {
+        return "EmpDim{" +
+                "eno=" + eno +
+                ", eddate=" + eddate +
+                ", edtype='" + edtype + '\'' +
+                ", edtalent='" + edtalent + '\'' +
+                '}';
+    }
+
     private Date eddate;
 
     private String edtype;
@@ -54,15 +62,5 @@ public class EmpDim {
 
     public void setEdtalent(String edtalent) {
         this.edtalent = edtalent == null ? null : edtalent.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "EmpDim{" +
-                "eno=" + eno +
-                ", eddate=" + eddate +
-                ", edtype='" + edtype + '\'' +
-                ", edtalent='" + edtalent + '\'' +
-                '}';
     }
 }

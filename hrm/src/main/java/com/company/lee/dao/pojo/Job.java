@@ -29,6 +29,15 @@ public class Job {
         return jname;
     }
 
+    @Override
+    public String toString() {
+        return "Job{" +
+                "jno=" + jno +
+                ", jname='" + jname + '\'' +
+                ", jtype='" + jtype + '\'' +
+                '}';
+    }
+
     public void setJname(String jname) {
         this.jname = jname == null ? null : jname.trim();
     }
@@ -39,14 +48,5 @@ public class Job {
 
     public void setJtype(String jtype) {
         this.jtype = jtype == null ? null : jtype.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Job{" +
-                "jno=" + jno +
-                ", jname='" + jname + '\'' +
-                ", jtype='" + jtype + '\'' +
-                '}';
     }
 }

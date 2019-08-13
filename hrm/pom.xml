@@ -163,7 +163,7 @@
   </dependencies>
 
   <build>
-    <finalName>SSMhrm</finalName>
+    <finalName>hrm</finalName>
     <plugins>
       <plugin>
         <groupId>org.mybatis.generator</groupId>
