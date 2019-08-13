@@ -5,7 +5,7 @@ import java.util.Date;
 public class Emp {
     private Integer eno;
 
-    private Integer job;
+    private Integer jno;
 
     private Integer dno;
 
@@ -29,9 +29,9 @@ public class Emp {
 
     private String efrom;
 
-    public Emp(Integer eno, Integer job, Integer dno, String ename, String esex, Date ebirthday, Integer eid, String eedu, Date hireday, Date jobstartday, String estate, String etype, String efrom) {
+    public Emp(Integer eno, Integer jno, Integer dno, String ename, String esex, Date ebirthday, Integer eid, String eedu, Date hireday, Date jobstartday, String estate, String etype, String efrom) {
         this.eno = eno;
-        this.job = job;
+        this.jno = jno;
         this.dno = dno;
         this.ename = ename;
         this.esex = esex;
@@ -57,12 +57,12 @@ public class Emp {
         this.eno = eno;
     }
 
-    public Integer getJob() {
-        return job;
+    public Integer getJno() {
+        return jno;
     }
 
-    public void setJob(Integer job) {
-        this.job = job;
+    public void setJno(Integer jno) {
+        this.jno = jno;
     }
 
     public Integer getDno() {
