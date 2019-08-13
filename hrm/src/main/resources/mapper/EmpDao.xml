@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.lee.dao.EmpDao">
+  <resultMap id="BaseResultMap" type="com.company.lee.dao.pojo.Emp">
+    <constructor>
+      <idArg column="eno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="job" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ename" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="esex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ebirthday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="eid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="eedu" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="hireday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="jobstartday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="estate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="etype" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="efrom" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    eno, job, dno, ename, esex, ebirthday, eid, eedu, hireday, jobstartday, estate, etype, 
+    efrom
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_emp
+    where eno = #{eno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_emp
+    where eno = #{eno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.company.lee.dao.pojo.Emp">
+    insert into t_emp (eno, job, dno, 
+      ename, esex, ebirthday, 
+      eid, eedu, hireday, jobstartday, 
+      estate, etype, efrom
+      )
+    values (#{eno,jdbcType=INTEGER}, #{job,jdbcType=INTEGER}, #{dno,jdbcType=INTEGER}, 
+      #{ename,jdbcType=VARCHAR}, #{esex,jdbcType=VARCHAR}, #{ebirthday,jdbcType=DATE}, 
+      #{eid,jdbcType=INTEGER}, #{eedu,jdbcType=VARCHAR}, #{hireday,jdbcType=DATE}, #{jobstartday,jdbcType=DATE}, 
+      #{estate,jdbcType=VARCHAR}, #{etype,jdbcType=VARCHAR}, #{efrom,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.lee.dao.pojo.Emp">
+    insert into t_emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eno != null">
+        eno,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="dno != null">
+        dno,
+      </if>
+      <if test="ename != null">
+        ename,
+      </if>
+      <if test="esex != null">
+        esex,
+      </if>
+      <if test="ebirthday != null">
+        ebirthday,
+      </if>
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="eedu != null">
+        eedu,
+      </if>
+      <if test="hireday != null">
+        hireday,
+      </if>
+      <if test="jobstartday != null">
+        jobstartday,
+      </if>
+      <if test="estate != null">
+        estate,
+      </if>
+      <if test="etype != null">
+        etype,
+      </if>
+      <if test="efrom != null">
+        efrom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eno != null">
+        #{eno,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=INTEGER},
+      </if>
+      <if test="dno != null">
+        #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="esex != null">
+        #{esex,jdbcType=VARCHAR},
+      </if>
+      <if test="ebirthday != null">
+        #{ebirthday,jdbcType=DATE},
+      </if>
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="eedu != null">
+        #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="hireday != null">
+        #{hireday,jdbcType=DATE},
+      </if>
+      <if test="jobstartday != null">
+        #{jobstartday,jdbcType=DATE},
+      </if>
+      <if test="estate != null">
+        #{estate,jdbcType=VARCHAR},
+      </if>
+      <if test="etype != null">
+        #{etype,jdbcType=VARCHAR},
+      </if>
+      <if test="efrom != null">
+        #{efrom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.lee.dao.pojo.Emp">
+    update t_emp
+    <set>
+      <if test="job != null">
+        job = #{job,jdbcType=INTEGER},
+      </if>
+      <if test="dno != null">
+        dno = #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null">
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="esex != null">
+        esex = #{esex,jdbcType=VARCHAR},
+      </if>
+      <if test="ebirthday != null">
+        ebirthday = #{ebirthday,jdbcType=DATE},
+      </if>
+      <if test="eid != null">
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="eedu != null">
+        eedu = #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="hireday != null">
+        hireday = #{hireday,jdbcType=DATE},
+      </if>
+      <if test="jobstartday != null">
+        jobstartday = #{jobstartday,jdbcType=DATE},
+      </if>
+      <if test="estate != null">
+        estate = #{estate,jdbcType=VARCHAR},
+      </if>
+      <if test="etype != null">
+        etype = #{etype,jdbcType=VARCHAR},
+      </if>
+      <if test="efrom != null">
+        efrom = #{efrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eno = #{eno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.lee.dao.pojo.Emp">
+    update t_emp
+    set job = #{job,jdbcType=INTEGER},
+      dno = #{dno,jdbcType=INTEGER},
+      ename = #{ename,jdbcType=VARCHAR},
+      esex = #{esex,jdbcType=VARCHAR},
+      ebirthday = #{ebirthday,jdbcType=DATE},
+      eid = #{eid,jdbcType=INTEGER},
+      eedu = #{eedu,jdbcType=VARCHAR},
+      hireday = #{hireday,jdbcType=DATE},
+      jobstartday = #{jobstartday,jdbcType=DATE},
+      estate = #{estate,jdbcType=VARCHAR},
+      etype = #{etype,jdbcType=VARCHAR},
+      efrom = #{efrom,jdbcType=VARCHAR}
+    where eno = #{eno,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.company.lee.dao.pojo.Emp">
+    <constructor>
+      <idArg column="eno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="job" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ename" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="esex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ebirthday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="eid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="eedu" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="hireday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="estate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="etype" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="efrom" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    eno, job, dno, ename, esex, ebirthday, eid, eedu, hireday, estate, etype, efrom
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_emp
+    where eno = #{eno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_emp
+    where eno = #{eno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.company.lee.dao.pojo.Emp">
+    insert into t_emp (eno, job, dno, 
+      ename, esex, ebirthday, 
+      eid, eedu, hireday, estate, 
+      etype, efrom)
+    values (#{eno,jdbcType=INTEGER}, #{job,jdbcType=INTEGER}, #{dno,jdbcType=INTEGER}, 
+      #{ename,jdbcType=VARCHAR}, #{esex,jdbcType=VARCHAR}, #{ebirthday,jdbcType=DATE}, 
+      #{eid,jdbcType=INTEGER}, #{eedu,jdbcType=VARCHAR}, #{hireday,jdbcType=DATE}, #{estate,jdbcType=VARCHAR}, 
+      #{etype,jdbcType=VARCHAR}, #{efrom,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.lee.dao.pojo.Emp">
+    insert into t_emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eno != null">
+        eno,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="dno != null">
+        dno,
+      </if>
+      <if test="ename != null">
+        ename,
+      </if>
+      <if test="esex != null">
+        esex,
+      </if>
+      <if test="ebirthday != null">
+        ebirthday,
+      </if>
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="eedu != null">
+        eedu,
+      </if>
+      <if test="hireday != null">
+        hireday,
+      </if>
+      <if test="estate != null">
+        estate,
+      </if>
+      <if test="etype != null">
+        etype,
+      </if>
+      <if test="efrom != null">
+        efrom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eno != null">
+        #{eno,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=INTEGER},
+      </if>
+      <if test="dno != null">
+        #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="esex != null">
+        #{esex,jdbcType=VARCHAR},
+      </if>
+      <if test="ebirthday != null">
+        #{ebirthday,jdbcType=DATE},
+      </if>
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="eedu != null">
+        #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="hireday != null">
+        #{hireday,jdbcType=DATE},
+      </if>
+      <if test="estate != null">
+        #{estate,jdbcType=VARCHAR},
+      </if>
+      <if test="etype != null">
+        #{etype,jdbcType=VARCHAR},
+      </if>
+      <if test="efrom != null">
+        #{efrom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.lee.dao.pojo.Emp">
+    update t_emp
+    <set>
+      <if test="job != null">
+        job = #{job,jdbcType=INTEGER},
+      </if>
+      <if test="dno != null">
+        dno = #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null">
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="esex != null">
+        esex = #{esex,jdbcType=VARCHAR},
+      </if>
+      <if test="ebirthday != null">
+        ebirthday = #{ebirthday,jdbcType=DATE},
+      </if>
+      <if test="eid != null">
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="eedu != null">
+        eedu = #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="hireday != null">
+        hireday = #{hireday,jdbcType=DATE},
+      </if>
+      <if test="estate != null">
+        estate = #{estate,jdbcType=VARCHAR},
+      </if>
+      <if test="etype != null">
+        etype = #{etype,jdbcType=VARCHAR},
+      </if>
+      <if test="efrom != null">
+        efrom = #{efrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eno = #{eno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.lee.dao.pojo.Emp">
+    update t_emp
+    set job = #{job,jdbcType=INTEGER},
+      dno = #{dno,jdbcType=INTEGER},
+      ename = #{ename,jdbcType=VARCHAR},
+      esex = #{esex,jdbcType=VARCHAR},
+      ebirthday = #{ebirthday,jdbcType=DATE},
+      eid = #{eid,jdbcType=INTEGER},
+      eedu = #{eedu,jdbcType=VARCHAR},
+      hireday = #{hireday,jdbcType=DATE},
+      estate = #{estate,jdbcType=VARCHAR},
+      etype = #{etype,jdbcType=VARCHAR},
+      efrom = #{efrom,jdbcType=VARCHAR}
+    where eno = #{eno,jdbcType=INTEGER}
+  </update>
+</mapper>
