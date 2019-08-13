@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.company.lee.dao.pojo.Emp">
     <constructor>
       <idArg column="eno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="jno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="dno" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="ename" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="esex" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="ebirthday" javaType="java.util.Date" jdbcType="DATE" />
-      <arg column="eid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="eid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="eedu" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="jno" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="hireday" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="jobstartday" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="estate" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    eno, jno, dno, ename, esex, ebirthday, eid, eedu, hireday, jobstartday, estate, etype, 
+    eno, ename, esex, ebirthday, eid, eedu, dno, jno, hireday, jobstartday, estate, etype, 
     efrom
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -33,14 +33,14 @@
     where eno = #{eno,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.company.lee.dao.pojo.Emp">
-    insert into t_emp (eno, jno, dno, 
-      ename, esex, ebirthday, 
-      eid, eedu, hireday, jobstartday, 
+    insert into t_emp (eno, ename, esex, 
+      ebirthday, eid, eedu, 
+      dno, jno, hireday, jobstartday, 
       estate, etype, efrom
       )
-    values (#{eno,jdbcType=INTEGER}, #{jno,jdbcType=INTEGER}, #{dno,jdbcType=INTEGER}, 
-      #{ename,jdbcType=VARCHAR}, #{esex,jdbcType=VARCHAR}, #{ebirthday,jdbcType=DATE}, 
-      #{eid,jdbcType=INTEGER}, #{eedu,jdbcType=VARCHAR}, #{hireday,jdbcType=DATE}, #{jobstartday,jdbcType=DATE}, 
+    values (#{eno,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{esex,jdbcType=VARCHAR}, 
+      #{ebirthday,jdbcType=DATE}, #{eid,jdbcType=VARCHAR}, #{eedu,jdbcType=VARCHAR}, 
+      #{dno,jdbcType=INTEGER}, #{jno,jdbcType=INTEGER}, #{hireday,jdbcType=DATE}, #{jobstartday,jdbcType=DATE}, 
       #{estate,jdbcType=VARCHAR}, #{etype,jdbcType=VARCHAR}, #{efrom,jdbcType=VARCHAR}
       )
   </insert>
@@ -49,12 +49,6 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="eno != null">
         eno,
-      </if>
-      <if test="jno != null">
-        jno,
-      </if>
-      <if test="dno != null">
-        dno,
       </if>
       <if test="ename != null">
         ename,
@@ -70,6 +64,12 @@
       </if>
       <if test="eedu != null">
         eedu,
+      </if>
+      <if test="dno != null">
+        dno,
+      </if>
+      <if test="jno != null">
+        jno,
       </if>
       <if test="hireday != null">
         hireday,
@@ -91,12 +91,6 @@
       <if test="eno != null">
         #{eno,jdbcType=INTEGER},
       </if>
-      <if test="jno != null">
-        #{jno,jdbcType=INTEGER},
-      </if>
-      <if test="dno != null">
-        #{dno,jdbcType=INTEGER},
-      </if>
       <if test="ename != null">
         #{ename,jdbcType=VARCHAR},
       </if>
@@ -107,10 +101,16 @@
         #{ebirthday,jdbcType=DATE},
       </if>
       <if test="eid != null">
-        #{eid,jdbcType=INTEGER},
+        #{eid,jdbcType=VARCHAR},
       </if>
       <if test="eedu != null">
         #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="dno != null">
+        #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="jno != null">
+        #{jno,jdbcType=INTEGER},
       </if>
       <if test="hireday != null">
         #{hireday,jdbcType=DATE},
@@ -132,12 +132,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.company.lee.dao.pojo.Emp">
     update t_emp
     <set>
-      <if test="jno != null">
-        jno = #{jno,jdbcType=INTEGER},
-      </if>
-      <if test="dno != null">
-        dno = #{dno,jdbcType=INTEGER},
-      </if>
       <if test="ename != null">
         ename = #{ename,jdbcType=VARCHAR},
       </if>
@@ -148,10 +142,16 @@
         ebirthday = #{ebirthday,jdbcType=DATE},
       </if>
       <if test="eid != null">
-        eid = #{eid,jdbcType=INTEGER},
+        eid = #{eid,jdbcType=VARCHAR},
       </if>
       <if test="eedu != null">
         eedu = #{eedu,jdbcType=VARCHAR},
+      </if>
+      <if test="dno != null">
+        dno = #{dno,jdbcType=INTEGER},
+      </if>
+      <if test="jno != null">
+        jno = #{jno,jdbcType=INTEGER},
       </if>
       <if test="hireday != null">
         hireday = #{hireday,jdbcType=DATE},
@@ -173,13 +173,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.company.lee.dao.pojo.Emp">
     update t_emp
-    set jno = #{jno,jdbcType=INTEGER},
-      dno = #{dno,jdbcType=INTEGER},
-      ename = #{ename,jdbcType=VARCHAR},
+    set ename = #{ename,jdbcType=VARCHAR},
       esex = #{esex,jdbcType=VARCHAR},
       ebirthday = #{ebirthday,jdbcType=DATE},
-      eid = #{eid,jdbcType=INTEGER},
+      eid = #{eid,jdbcType=VARCHAR},
       eedu = #{eedu,jdbcType=VARCHAR},
+      dno = #{dno,jdbcType=INTEGER},
+      jno = #{jno,jdbcType=INTEGER},
       hireday = #{hireday,jdbcType=DATE},
       jobstartday = #{jobstartday,jdbcType=DATE},
       estate = #{estate,jdbcType=VARCHAR},

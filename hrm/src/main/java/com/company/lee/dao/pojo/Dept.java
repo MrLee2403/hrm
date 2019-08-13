@@ -1,5 +1,7 @@
 package com.company.lee.dao.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Dept {
@@ -10,10 +12,22 @@ public class Dept {
     private String dtype;
 
     private Integer dphone;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dfounddate;
 
     private Integer superdno;
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "dno=" + dno +
+                ", dname='" + dname + '\'' +
+                ", dtype='" + dtype + '\'' +
+                ", dphone=" + dphone +
+                ", dfounddate=" + dfounddate +
+                ", superdno=" + superdno +
+                '}';
+    }
 
     public Dept(Integer dno, String dname, String dtype, Integer dphone, Date dfounddate, Integer superdno) {
         this.dno = dno;

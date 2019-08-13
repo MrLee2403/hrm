@@ -1,12 +1,14 @@
 package com.company.lee.dao.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class EmpPro {
     private Integer eno;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date epstartdate;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ependdate;
 
     private String epstate;
@@ -52,5 +54,15 @@ public class EmpPro {
 
     public void setEpstate(String epstate) {
         this.epstate = epstate == null ? null : epstate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "EmpPro{" +
+                "eno=" + eno +
+                ", epstartdate=" + epstartdate +
+                ", ependdate=" + ependdate +
+                ", epstate='" + epstate + '\'' +
+                '}';
     }
 }

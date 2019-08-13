@@ -1,13 +1,11 @@
 package com.company.lee.dao.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Emp {
     private Integer eno;
-
-    private Integer jno;
-
-    private Integer dno;
 
     private String ename;
 
@@ -15,12 +13,16 @@ public class Emp {
 
     private Date ebirthday;
 
-    private Integer eid;
+    private String eid;
 
     private String eedu;
 
-    private Date hireday;
+    private Integer dno;
 
+    private Integer jno;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date hireday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date jobstartday;
 
     private String estate;
@@ -29,15 +31,15 @@ public class Emp {
 
     private String efrom;
 
-    public Emp(Integer eno, Integer jno, Integer dno, String ename, String esex, Date ebirthday, Integer eid, String eedu, Date hireday, Date jobstartday, String estate, String etype, String efrom) {
+    public Emp(Integer eno, String ename, String esex, Date ebirthday, String eid, String eedu, Integer dno, Integer jno, Date hireday, Date jobstartday, String estate, String etype, String efrom) {
         this.eno = eno;
-        this.jno = jno;
-        this.dno = dno;
         this.ename = ename;
         this.esex = esex;
         this.ebirthday = ebirthday;
         this.eid = eid;
         this.eedu = eedu;
+        this.dno = dno;
+        this.jno = jno;
         this.hireday = hireday;
         this.jobstartday = jobstartday;
         this.estate = estate;
@@ -55,22 +57,6 @@ public class Emp {
 
     public void setEno(Integer eno) {
         this.eno = eno;
-    }
-
-    public Integer getJno() {
-        return jno;
-    }
-
-    public void setJno(Integer jno) {
-        this.jno = jno;
-    }
-
-    public Integer getDno() {
-        return dno;
-    }
-
-    public void setDno(Integer dno) {
-        this.dno = dno;
     }
 
     public String getEname() {
@@ -97,12 +83,12 @@ public class Emp {
         this.ebirthday = ebirthday;
     }
 
-    public Integer getEid() {
+    public String getEid() {
         return eid;
     }
 
-    public void setEid(Integer eid) {
-        this.eid = eid;
+    public void setEid(String eid) {
+        this.eid = eid == null ? null : eid.trim();
     }
 
     public String getEedu() {
@@ -111,6 +97,22 @@ public class Emp {
 
     public void setEedu(String eedu) {
         this.eedu = eedu == null ? null : eedu.trim();
+    }
+
+    public Integer getDno() {
+        return dno;
+    }
+
+    public void setDno(Integer dno) {
+        this.dno = dno;
+    }
+
+    public Integer getJno() {
+        return jno;
+    }
+
+    public void setJno(Integer jno) {
+        this.jno = jno;
     }
 
     public Date getHireday() {

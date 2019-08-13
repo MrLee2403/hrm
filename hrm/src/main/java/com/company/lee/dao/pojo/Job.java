@@ -40,4 +40,13 @@ public class Job {
     public void setJtype(String jtype) {
         this.jtype = jtype == null ? null : jtype.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "jno=" + jno +
+                ", jname='" + jname + '\'' +
+                ", jtype='" + jtype + '\'' +
+                '}';
+    }
 }
