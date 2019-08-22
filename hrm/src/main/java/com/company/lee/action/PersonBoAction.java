@@ -20,8 +20,8 @@ public class PersonBoAction {
     public String findByTime(Map<String, Object> map, @RequestParam(value = "begintime") String begintime,
                              @RequestParam(value = "endtime") String endtime) {
         List<PersonBo> personBoList = personBoService.findByTimePerson(begintime, endtime);
-        map.put("names", personBoList);
-        return "demo";
+        map.put("lee", personBoList);
+        return "report";
     }
 
 }
