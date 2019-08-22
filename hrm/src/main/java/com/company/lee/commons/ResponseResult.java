@@ -58,4 +58,19 @@ public class ResponseResult<T> implements Serializable {
 
     public ResponseResult() {
     }
+    public boolean isSuccess(){
+        return this.code==ResultCode.SUCCESS.getCode();
+    }
+    public static <T> ResponseResult<T> createSuccessMassage(String msg){
+        return  new ResponseResult<T>(ResultCode.SUCCESS.getCode(),msg);
+    }
+    public static <T> ResponseResult<T> createSuccessMassage(String msg ,T data){
+        return  new ResponseResult<T>(ResultCode.SUCCESS.getCode(),msg,data);
+    }
+    public static <T> ResponseResult<T> createErrorMassage(String msg){
+        return  new ResponseResult<T>(ResultCode.ERROR.getCode(),msg);
+    }
+    public static <T> ResponseResult<T> createErrorMassage(String msg ,T data){
+        return  new ResponseResult<T>(ResultCode.ERROR.getCode(),msg,data);
+    }
 }

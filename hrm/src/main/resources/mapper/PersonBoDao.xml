@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.lee.dao.PersonBoDao">
+    <resultMap id="personBoResultMap" type="com.company.lee.dao.pojo.PersonBo">
+       <result property="emp.dno" column="DNO" jdbcType="INTEGER"></result>
+        <result property="eduSta.master" column="MASTER" jdbcType="INTEGER"></result>
+        <result property="eduSta.bachelor" column="BACHELOR" jdbcType="INTEGER"></result>
+        <result property="eduSta.college" column="COLLEGE" jdbcType="INTEGER"></result>
+        <result property="eduSta.senior" column="SENIOR" jdbcType="INTEGER"></result>
+        <result property="personSta.mBegin" column="MBEGIN" jdbcType="INTEGER"></result>
+        <result property="personSta.mEnd" column="MEND" jdbcType="INTEGER"></result>
+        <result property="personSta.newEmp" column="NEWEMP" jdbcType="INTEGER"></result>
+        <result property="personSta.dimEmp" column="DIMEMP" jdbcType="INTEGER"></result>
+    </resultMap>
+    <select id="findByTimePerson" resultMap="personBoResultMap">
+      SELECT t1.dno,t1.mBegin,t1.mEnd,t1.newEmp,t1.dimEmp,xl.master,xl.bachelor,xl.college,xl.senior FROM
+        (select dno,sum(yc) as mBegin,sum(ym) as mEnd,sum(xr) as newEmp,sum(lz) as dimEmp from
+        (select dno as dno,count(*) as yc,0 as ym,0 as xr,0 as lz from t_emp where hireday &lt;#{beginTime} and eno not in (select eno from t_emp_dimission where eddate &lt;#{beginTime}) group by dno
+      union all
+        select dno as dno,0 as yc,count(*) as ym,0 as xr,0 as lz from t_emp where hireday &lt;=#{endTime} and eno not in (select eno from t_emp_dimission where eddate &lt;=#{endTime}) group by dno
+      union all
+        select dno as dno,0 as yc,0 as ym,count(*) as xr,0 as lz from t_emp where hireday BETWEEN #{beginTime} and #{endTime}group by dno
+      union all
+        select dno as dno,0 as yc,0 as ym,0 as xr,count(*) as lz from t_emp e,t_emp_dimission dis where e.eno=dis.eno and hireday BETWEEN #{beginTime} and #{endTime} group by dno
+          )t GROUP BY dno)t1
+      LEFT JOIN
+        (SELECT dno,sum(ma) as master,sum(ba) as bachelor,sum(co) as college,sum(se) as senior FROM
+        (SELECT dno as dno, COUNT(*) as ma,0 as ba,0 as co,0 as se FROM t_emp WHERE hireday BETWEEN #{beginTime} AND #{endTime} AND eedu = 'master' GROUP BY dno
+      UNION ALL
+        SELECT dno as dno, 0 as ma,COUNT(*) as ba,0 as co,0 as se FROM t_emp WHERE hireday BETWEEN #{beginTime} AND #{endTime} AND eedu = 'bachelor' GROUP BY dno
+      UNION ALL
+        SELECT dno as dno, 0 as ma,0 as ba,COUNT(*) as co,0 as se FROM t_emp WHERE hireday BETWEEN #{beginTime} AND #{endTime} AND eedu = 'college' GROUP BY dno
+      UNION ALL
+        SELECT dno as dno, 0 as ma,0 as ba,0 as co,COUNT(*) as se FROM t_emp WHERE	hireday BETWEEN #{beginTime} AND #{endTime} AND eedu = 'senior' GROUP BY dno
+        )x GROUP BY dno)xl
+      ON t1.dno=xl.dno where xl.dno IS NOT NULL GROUP BY xl.dno
+    </select>
+
+</mapper>

@@ -6,10 +6,7 @@ import com.company.lee.dao.pojo.EmpPro;
 import com.company.lee.service.iservice.EmpProService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +33,7 @@ public class EmpProAction {
 
     @RequestMapping(value = "emppro/{eno}", method = RequestMethod.DELETE)
     public @ResponseBody
-    ResponseResult<EmpPro> delete(Integer eno) {
+    ResponseResult<EmpPro> delete(@PathVariable("eno") Integer eno) {
         String msg = empProService.delete(eno);
         int code = Result.SUCCESS.equals(msg) ? 200 : 500;
         return new ResponseResult<EmpPro>(code, msg);
